@@ -1,0 +1,6 @@
+- function normal 
+- html --> data:updated ---> include/.html
+- ajax : 
+    - get data from form [action,post,data]--> success
+- view : save --> render to string : html --> json response
+-ajax : load data ---> html[include] 

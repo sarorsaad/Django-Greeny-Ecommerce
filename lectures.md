@@ -1,0 +1,11 @@
+- project : 
+    - docker 
+    - filter products
+    - orders
+    - cart
+    - checkout 
+    - coupons 
+    - payment  
+    - deploy [heroku - aws]
+
+- vuejs 

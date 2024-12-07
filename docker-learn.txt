@@ -1,0 +1,31 @@
+- task : long time ---> django - redis --> celery  : 3 servers 
+- caching : data [redis] ---> function 
+
+    task[20m] ----> d
+    celry : progresssbar 
+
+- change 
+- periodic tasks 
+-------------------------------------------------------------
+Docker 
+    project : virtualenv:os 
+
+    contianers : linux : cloud : source code --> github 
+
+    docker[image]:linux -----> docker 
+
+    devops :
+        - ci/cd
+        - containers 
+        - deploy 
+
+
+    - install docker 
+    - setup image : commands 
+
+    docker : terminal : i command
+        - django 
+        - celery 
+        - redis 
+        - postgresql 
+        - gunicorn 
