@@ -1,16 +1,18 @@
 from urllib import request
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from products.models import Product
 from .models import Cart , CartDetail , Order , OrderDetail , Coupon
 from django.shortcuts import get_object_or_404
 from django.utils.timezone import datetime
 from django.http import JsonResponse
-from django.template.loader import render_to_string   
+from django.template.loader import render_to_string
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
 
+@login_required(login_url='/accounts/login/')
 def add_to_cart(request):
     if request.method == 'POST':
         product_id = request.POST['product_id']
@@ -31,11 +33,13 @@ def add_to_cart(request):
         
         
       
+@login_required(login_url='/accounts/login/')
 def order_list(request):
     orders = Order.objects.filter(user=request.user)
     return render(request,'orders/orders.html',{'orders':orders})
 
 
+@login_required(login_url='/accounts/login/')
 def checkout(request):
     cart = Cart.objects.get(user=request.user,status='inprogress')
     cart_detail = CartDetail.objects.filter(cart=cart)
@@ -53,7 +57,7 @@ def checkout(request):
                 total = total + delivery_cost
                 
                 
-                html = render_to_string('include/summery.html',{'sub_total':cart.get_total(),'total':total,'delivery_cost':delivery_cost,'code_value':code_value, request:request})
+                html = render_to_string('include/summery.html',{'sub_total':cart.get_total(),'total':total,'delivery_cost':delivery_cost,'code_value':code_value, 'request':request})
                 return JsonResponse({'result':html})        
     
     else:
